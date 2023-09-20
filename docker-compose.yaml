@@ -44,6 +44,6 @@ services:
     
 volumes:
   jenkins:
-  sonarQarQube_data:
+  sonarQube_data:
   sonarQube_extensions:
   sonarQube_logs:
