@@ -11,6 +11,7 @@ services:
      - ./nginx:/etc/nginx/conf.d
     ports:
      - 80:80
+
   jenkins:
     container_name: jenkins
     restart: always
@@ -24,5 +25,25 @@ services:
     volumes:
       - jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+
+  sonarqube:
+    container_name: sonarqube
+    restart: always
+    tty: true
+    image: sonarqube:latest
+    privileged: true
+    user: root
+    ports:
+      - 9000:9000
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonarQube_data:/opt/SonarQube/data
+      - sonarQube_extensions:/opt/SonarQube/extensions
+      - sonarQube_logs:/opt/SonarQube/logs
+    
 volumes:
   jenkins:
+  sonarQarQube_data:
+  sonarQube_extensions:
+  sonarQube_logs:
